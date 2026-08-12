@@ -1,9 +1,9 @@
 # uniform-over-dimension-location
 
-This repository contains the code for replication of the results in the paper 
+This repository contains the code for reproducing the results in the paper 
 "Uniform-over-dimension location tests for multivariate and high-dimensional data" 
-by [anonymized] (anonymized arxiv link). The implementation of the proposed 
-methods is provided in `methods.R` and can be used independently of the simulation 
+by [anonymized] ([anonymized arxiv link]). The implementation of the proposed 
+methods is provided in `code/methods.R` and can be used independently of the simulation 
 framework.
 
 ## Repository Structure
@@ -11,6 +11,8 @@ framework.
 ```text
 .
 ├── unif_over_dim.Rproj         # RStudio project
+├── renv/                       # renv configuration and project files
+├── renv.lock                   # Package versions used for the analysis
 |
 ├── run_simulation.R            # Run the complete simulation study
 ├── make_simulation_tables.R    # Generate Tables "tables/Rtable_p={5,25,50,100}.tex" 
@@ -26,38 +28,53 @@ framework.
 │   └── sim_results.rds
 |
 ├── tables/                     # Tables generated from simulation results
-|   ├── Rtable_p=5.tex
-|   ├── Rtable_p=25.tex
-|   ├── Rtable_p=50.tex
-|   └── Rtable_p=100.tex
+|   ├── Rtable_p=5.tex          # Table 1
+|   ├── Rtable_p=25.tex         # Table S1
+|   ├── Rtable_p=50.tex         # Table S2
+|   └── Rtable_p=100.tex        # Table 2
 |
 └── figures/                    # Figures generated from simulation results and real data analysis
-    ├── Rplot_p=5.pdf
-    ├── Rplot_p=25.pdf
-    ├── Rplot_p=50.pdf
-    ├── Rplot_p=100.pdf
-    └── Rplot_histogram.pdf
+    ├── Rplot_p=5.pdf           # Figure 1
+    ├── Rplot_p=25.pdf          # Figure S1
+    ├── Rplot_p=50.pdf          # Figure S2
+    ├── Rplot_p=100.pdf         # Figure 2
+    └── Rplot_histogram.pdf     # Figure 3
 ```
 
 ## Requirements
 
+The code was developed and tested with R version 4.6.0.
+
 The proposed methods can be used by sourcing `code/methods.R` and do not require
 any additional R packages.
 
-The simulation study and real data analysis require the following R packages:
+The simulation study and real data analysis use the following R packages:
 
-`HDNRA`, `mvtnorm`, `highmean`, `DescTools`, `maotai`, `energy`,  
-`future`, `future.apply`, `knitr`, `ggplot2`, `patchwork`, `colorspace`,  
-`plsgenomics`.
-
-The code was developed and tested with R version 4.6.0.
-Recent versions of the required packages should work. Some packages may be
-available only through the CRAN Archive.
+`HDNRA`, `mvtnorm`, `highmean`, `DescTools`, `maotai`, `energy`, `future`, 
+`future.apply`, `knitr`, `ggplot2`, `patchwork`, `colorspace`, `plsgenomics`.
 
 
-The code can be run using RStudio with the provided `.Rproj` file or from an R 
-session with the repository root as the working directory.
+The code can be run using RStudio with the `unif_over_dim.Rproj` file. It is
+recommended to restore the [`renv`](https://rstudio.github.io/renv/) environment 
+before running the simulation or real data analysis scripts.
 
+### Reproducing the R Environment
+
+After opening `unif_over_dim.Rproj` in RStudio, install `renv` if necessary:
+
+```r
+install.packages("renv")
+```
+
+Then restore the project environment:
+
+```r
+renv::restore()
+```
+
+This will restore the package versions recorded in `renv.lock`. The `highmean` 
+package is obtained from the CRAN Archive because it is no longer available in 
+the current CRAN repository.
 
 ## Using the Proposed Method
 
@@ -68,7 +85,7 @@ source("code/methods.R")
 ```
 
 The proposed method can then be called directly using the corresponding function
-in `methods.R`. 
+in `code/methods.R`. 
 
 To run the two sample test on the data matrices `dataX` and `dataY` using the 
 spatial kernel and 10000 replications for cut-off estimation, run:

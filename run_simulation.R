@@ -71,25 +71,7 @@ run_simulation <- function(p_values, mu_values, Rep) {
   return(results)
 }
 
-#### simulation for some given p and mu
-## specify the parameters
-# specify sample size
-#n1 = 40
-#n2 = 50
-#p = 100 #5, 25, 50, 100
-#mu = 5 #0:6
 
-## specify data generating models
-#models = 1:9
-## number of replications to calculate the proportion of rejections
-#Rep = 10 #10000
-
-#set.seed((100 * p + mu))
-#start = Sys.time()
-#res = simulate_tests(n1, n2, p, mu, models, Rep)
-#end = Sys.time()
-#print((end - start))
-#print(res)
 
 #### perform the complete simulation study
 
@@ -97,7 +79,7 @@ start = Sys.time()
 
 ## number of replications to calculate the proportion of rejections
 
-Rep = 1 #10000
+Rep = 10000
 
 ## Set-up parallel processing
 
@@ -120,17 +102,17 @@ results = c(results,
           run_simulation(p_values = p_values, mu_values = mu_values, Rep = Rep)
 )
 
+# restore initial plan
 plan(old_plan)
 
-## save output in a rds file
+### save output in a rds file
 
 saveRDS(results, 
-        file = paste0("results/simulation_results_", format(Sys.time(), "%Y%m%d_%H%M%S"), ".rds"))
+        file = "results/sim_results.rds")
 
 end = Sys.time()
 
 print((end - start))
 
-#print(results)
 
 

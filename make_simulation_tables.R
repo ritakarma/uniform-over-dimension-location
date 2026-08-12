@@ -7,7 +7,7 @@ library(knitr)
 # reading simulation results (output of the function 'run_simulation' 
 # from the file "run_simulation.R")
 
-r = readRDS("results/simulation_results_20260624_205520.rds")
+r = readRDS("results/sim_results.rds")
 
 
 p_values = c(100, 50, 25, 5)

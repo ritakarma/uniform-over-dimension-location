@@ -114,7 +114,7 @@ all_tests <- function(dataX, dataY, nsim = 10000, perm = 500) {
 ##############################################################################
 
 
-## Set seed for reporducibility
+## Set seed for reproducibility
 set.seed(100001)
 
 # Loading Colon tissue data

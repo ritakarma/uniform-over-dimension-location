@@ -11,8 +11,6 @@ framework.
 ```text
 .
 ├── unif_over_dim.Rproj         # RStudio project
-├── renv/                       # renv configuration and project files
-├── renv.lock                   # Package versions used for the analysis
 |
 ├── run_simulation.R            # Run the complete simulation study
 ├── make_simulation_tables.R    # Generate Tables "tables/Rtable_p={5,25,50,100}.tex" 
@@ -43,7 +41,8 @@ framework.
 
 ## Requirements
 
-The code was developed and tested with R version 4.6.0.
+The code can be run in RStudio with the `unif_over_dim.Rproj` file or from an R
+session with the repository root as the working directory.
 
 The proposed methods can be used by sourcing `code/methods.R` and do not require
 any additional R packages.
@@ -53,28 +52,25 @@ The simulation study and real data analysis use the following R packages:
 `HDNRA`, `mvtnorm`, `highmean`, `DescTools`, `maotai`, `energy`, `future`, 
 `future.apply`, `knitr`, `ggplot2`, `patchwork`, `colorspace`, `plsgenomics`.
 
-
-The code can be run using RStudio with the `unif_over_dim.Rproj` file. It is
-recommended to restore the [`renv`](https://rstudio.github.io/renv/) environment 
-before running the simulation or real data analysis scripts.
-
-### Reproducing the R Environment
-
-After opening `unif_over_dim.Rproj` in RStudio, install `renv` if necessary:
+To install the required packages (except `highmean`), run:
 
 ```r
-install.packages("renv")
+install.packages(c(
+  "HDNRA", "mvtnorm", "DescTools", "maotai", "energy",
+  "future", "future.apply", "knitr", "ggplot2", "patchwork",
+  "colorspace", "plsgenomics"
+))
 ```
 
-Then restore the project environment:
+The `highmean` package is available in the [CRAN Archive](https://cran.r-project.org/src/contrib/Archive/highmean/).
+It can be installed using `remotes`:
 
 ```r
-renv::restore()
+install.packages("remotes")
+remotes::install_url(
+  "https://cran.r-project.org/src/contrib/Archive/highmean/highmean_3.0.tar.gz"
+)
 ```
-
-This will restore the package versions recorded in `renv.lock`. The `highmean` 
-package is obtained from the CRAN Archive because it is no longer available in 
-the current CRAN repository.
 
 ## Using the Proposed Method
 
@@ -123,7 +119,9 @@ source("run_simulation.R")
 ```
 
 The script uses parallel processing via the `future` package and, by default,
-uses one fewer worker than the number of available CPU cores.
+uses one fewer worker than the number of available CPU cores. The number of 
+workers can be adjusted by changing `num_workers` in the script 
+`run_simulation.R` based on the available computational resources.
 
 The simulation results are automatically saved to `results/sim_results.rds`.
 
@@ -162,10 +160,9 @@ p <- 100          # dimension
 model <- 1        # model
 
 if (p == 5) {
-  mu_values = c(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2)
-}
-else {
-  mu_values = 0:6
+  mu_values <- c(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2)
+} else {
+  mu_values <- 0:6
 }
 
 output <- empirical_power(p, model, mu_values, results)

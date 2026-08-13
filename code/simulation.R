@@ -189,8 +189,6 @@ simulate_tests <- function(n1, n2, p, mu, models, Rep) {
   for (id in 1:length(models)) {
     vec_final = numeric(length(tests))  # vector to store total 
                                         # number of rejections
-    #cat(sprintf("[pid=%s]  p=%d  mu=%f  Ex %d  %s\n",Sys.getpid(), p, mu,
-    #            models[id], date()), file = "simulation_log.txt", append = TRUE)
     
     for (i  in 1:Rep) {
       res = model_sim(models[id], n1, n2, p, mu) ## Generating dataX and dataY

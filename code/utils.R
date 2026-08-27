@@ -6,8 +6,8 @@ new_label <- function(x) {
   # Output: 
   #   character vector with modified names
   
-  map = c("KCDG^1" = "KCDG2025^1", "KCDG^2_0.25" = "KCDG2025^2",
-          "sKCDG^1" = "sKCDG2025^1", "sKCDG^2_0.25" = "sKCDG2025^2", 
+  map = c("KCDG^1" = "KCDG2026^1", "KCDG^2_0.25" = "KCDG2026^2",
+          "sKCDG^1" = "sKCDG2026^1", "sKCDG^2_0.25" = "sKCDG2026^2", 
           "T^2" = "HT2",
           "MMD_rbf" = "GBRSS2012[RBF]", "MMD_linear" = "GBRSS2012[lin]",
           "crossMMD_rbf" = "SKR2022[RBF]", "crossMMD_linear" = "SKR2022[lin]",
@@ -80,8 +80,8 @@ new_label_tex <- function(x) {
   # Output: 
   #   character vector with modified names
   
-  map = c("KCDG2025^1" = "KCDG2025$^1$", "KCDG2025^2" = "KCDG2025$^2$", 
-          "sKCDG2025^1" = "sKCDG2025$^1$", "sKCDG2025^2" = "sKCDG2025$^2$",
+  map = c("KCDG2026^1" = "KCDG2026$^1$", "KCDG2026^2" = "KCDG2026$^2$", 
+          "sKCDG2026^1" = "sKCDG2026$^1$", "sKCDG2026^2" = "sKCDG2026$^2$",
           "GBRSS2012[RBF]" = "GBRSS2012$_{\\text{RBF}}$", 
           "GBRSS2012[lin]" = "GBRSS2012$_{\\text{lin}}$",
           "SKR2022[RBF]" = "SKR2022$_{\\text{RBF}}$", 

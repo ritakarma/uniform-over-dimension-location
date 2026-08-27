@@ -36,7 +36,7 @@ framework.
     ├── Rplot_p=25.pdf          # Figure S1
     ├── Rplot_p=50.pdf          # Figure S2
     ├── Rplot_p=100.pdf         # Figure 2
-    └── Rplot_histogram.pdf     # Figure 3
+    └── Rplot_histogram.pdf     # Figure S3
 ```
 
 ## Requirements
@@ -191,4 +191,4 @@ The script uses the human colon tissue dataset provided by the `plsgenomics` pac
 The dataset is also available at <http://genomics-pubs.princeton.edu/oncology/affydata/index.html>.
 
 The script outputs the results corresponding to Table 3 of the main paper in the
-R console and generates Figure 3 at `figures/Rplot_histogram.pdf`.
+R console and generates Figure S3 of the Supplementary Material at `figures/Rplot_histogram.pdf`.

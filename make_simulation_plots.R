@@ -20,24 +20,24 @@ p_values = c(100, 50, 25, 5)
 for (p in p_values) {
   # method names
   if (p == 5) {
-    methods = c("KCDG2025^1", "KCDG2025^2", "sKCDG2025^1", "sKCDG2025^2", "ZGZC2020",
+    methods = c("KCDG2026^1", "KCDG2026^2", "sKCDG2026^1", "sKCDG2026^2", "ZGZC2020",
       "RS2016", "GBRSS2012[RBF]", "SKR2022[RBF]", "GBRSS2012[lin]", "SKR2022[lin]",
       "HT2", "CM1997"   
     )
   }
   else {
-    methods = c("KCDG2025^1", "KCDG2025^2", "sKCDG2025^1", "sKCDG2025^2", "ZGZC2020",
+    methods = c("KCDG2026^1", "KCDG2026^2", "sKCDG2026^1", "sKCDG2026^2", "ZGZC2020",
        "RS2016", "GBRSS2012[RBF]", "SKR2022[RBF]", "GBRSS2012[lin]", "SKR2022[lin]",
-       "BS1996", "CLX2014", "CQ2010", "SD2008"    
+       "BS1996", "CLX2014", "CQ2010", "SD2008", "CLZ2014"
     )
   }
   
   # define line types
   line_types = setNames(rep("solid", length(methods)), methods)
-  line_types["KCDG2025^1"] <- "dashed"
-  line_types["KCDG2025^2"] <- "dashed"
-  line_types["sKCDG2025^1"] <- "dashed"
-  line_types["sKCDG2025^2"] <- "dashed"
+  line_types["KCDG2026^1"] <- "dashed"
+  line_types["KCDG2026^2"] <- "dashed"
+  line_types["sKCDG2026^1"] <- "dashed"
+  line_types["sKCDG2026^2"] <- "dashed"
   
   # define line colors
   method_colors = setNames(

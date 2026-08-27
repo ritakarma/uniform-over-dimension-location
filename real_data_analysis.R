@@ -42,7 +42,7 @@ all_tests <- function(dataX, dataY, nsim = 10000, perm = 500) {
                       vec_beta = 0.25)
   vec = c(vec1, vec2)  
   
-  names(vec) = c("KCDG2025^1", "KCDG2025^2", "sKCDG2025^1", "sKCDG2025^2")
+  names(vec) = c("KCDG2026^1", "KCDG2026^2", "sKCDG2026^1", "sKCDG2026^2")
   
   ## Performing other tests
   
@@ -143,9 +143,9 @@ result_data_avg = colSums(result_data_block) / nrow(result_data_block)
 
 # layout of histogram subplots (number of histograms in each rows: 5, 5, 4) 
 tests <- c(
-  "ZGZC2020", "BS1996", "CLX2014", "CQ2010", "SD2008",
-  "RS2016", "GBRSS2012[RBF]", "GBRSS2012[lin]", "SKR2022[RBF]", "SKR2022[lin]",
-  "KCDG2025^1", "KCDG2025^2", "sKCDG2025^1", "sKCDG2025^2"
+  "ZGZC2020", "BS1996", "CLX2014", "CQ2010", "SD2008", "CLZ2014",
+  "GBRSS2012[RBF]", "GBRSS2012[lin]", "SKR2022[RBF]", "SKR2022[lin]",
+  "RS2016", "KCDG2026^1", "KCDG2026^2", "sKCDG2026^1", "sKCDG2026^2"
 )
 
 print("p-value of different tests for the whole dataset")
@@ -193,11 +193,7 @@ for (i in seq_along(tests)) {
 # Arrange in 3 rows: 5 on first row, 5 on second row, 4 on third row
 row1 <- wrap_plots(plots[1:5], nrow = 1)
 row2 <- wrap_plots(plots[6:10], nrow = 1)
-
-row3 <- wrap_plots(
-  plot_spacer(), plots[[11]], plots[[12]], plots[[13]], plots[[14]], plot_spacer(),
-  nrow = 1
-) + plot_layout(widths = c(0.5, 1, 1, 1, 1, 0.5))
+row3 <- wrap_plots(plots[11:15], nrow = 1)
 
 final_plot <- row1 / row2 / row3
 

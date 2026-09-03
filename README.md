@@ -187,8 +187,6 @@ The real data analysis can be reproduced independently by running:
 source("real_data_analysis.R")
 ```
 
-The script uses the human colon tissue dataset provided by the `plsgenomics` package. 
-The dataset is also available at <http://genomics-pubs.princeton.edu/oncology/affydata/index.html>.
-
-The script outputs the results corresponding to Table 3 of the main paper in the
+The script analyzes the human colon tissue dataset from the R package `plsgenomics`. 
+It outputs the results corresponding to Table 3 of the main paper in the
 R console and generates Figure S3 of the Supplementary Material at `figures/Rplot_histogram.pdf`.

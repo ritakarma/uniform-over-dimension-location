@@ -1,5 +1,5 @@
 # Source required code files
-source("code/utils.R")
+source("code/functions/utils.R")
 
 # Load required packages
 library("ggplot2")

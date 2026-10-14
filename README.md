@@ -3,40 +3,42 @@
 This repository contains the code for reproducing the results in the paper 
 "Uniform-over-dimension location tests for multivariate and high-dimensional data" 
 by [anonymized] ([anonymized arxiv link]). The implementation of the proposed 
-methods is provided in `code/methods.R` and can be used independently of the simulation 
+methods is provided in `code/functions/methods.R` and can be used independently of the simulation 
 framework.
 
 ## Repository Structure
 
 ```text
 .
-├── unif_over_dim.Rproj         # RStudio project
+├── unif_over_dim.Rproj                # RStudio project
 |
-├── run_simulation.R            # Run the complete simulation study
-├── make_simulation_tables.R    # Generate Tables "tables/Rtable_p={5,25,50,100}.tex" 
-├── make_simulation_plots.R     # Generate Figures "figures/Rplot_p={5,25,50,100}.pdf"
-├── real_data_analysis.R        # Perform real data analysis, generate "figures/Rplot_histogram.pdf"
+├── code/
+│   ├── functions/                     # Reusuable R functions
+│   │   ├── methods.R                  # Proposed and competing methods
+│   │   ├── simulation.R               # Data generation and simulation functions
+│   │   └── utils.R                    # Utility functions for result processing
+│   │
+│   └── scripts/                       # Scripts for simulation and data analysis
+│       ├── run_simulation.R           # Run the complete simulation study
+|       ├── make_simulation_tables.R   # Generate Tables "tables/Rtable_p={5,25,50,100}.tex"
+|       ├── make_simulation_plots.R    # Generate Figures "figures/Rplot_p={5,25,50,100}.pdf"
+│       └── real_data_analysis.R       # Perform real data analysis, generate "figures/Rplot_histogram.pdf"
 |
-├── code/                       # R functions
-│   ├── methods.R               # Proposed and competing methods
-│   ├── simulation.R            # Data generation and simulation functions
-│   └── utils.R                 # Utility functions for result processing
-|
-├── results/                    # Simulation results
+├── results/                           # Simulation results
 │   └── sim_results.rds
 |
-├── tables/                     # Tables generated from simulation results
-|   ├── Rtable_p=5.tex          # Table 1
-|   ├── Rtable_p=25.tex         # Table S1
-|   ├── Rtable_p=50.tex         # Table S2
-|   └── Rtable_p=100.tex        # Table 2
+├── tables/                            # Tables generated from simulation results
+|   ├── Rtable_p=5.tex                 # Table 1
+|   ├── Rtable_p=25.tex                # Table S1
+|   ├── Rtable_p=50.tex                # Table S2
+|   └── Rtable_p=100.tex               # Table 2
 |
-└── figures/                    # Figures generated from simulation results and real data analysis
-    ├── Rplot_p=5.pdf           # Figure 1
-    ├── Rplot_p=25.pdf          # Figure S1
-    ├── Rplot_p=50.pdf          # Figure S2
-    ├── Rplot_p=100.pdf         # Figure 2
-    └── Rplot_histogram.pdf     # Figure S3
+└── figures/                           # Figures generated from simulation results and real data analysis
+    ├── Rplot_p=5.pdf                  # Figure 1
+    ├── Rplot_p=25.pdf                 # Figure S1
+    ├── Rplot_p=50.pdf                 # Figure S2
+    ├── Rplot_p=100.pdf                # Figure 2
+    └── Rplot_histogram.pdf            # Figure S3
 ```
 
 ## Requirements
@@ -44,7 +46,7 @@ framework.
 The code can be run in RStudio with the `unif_over_dim.Rproj` file or from an R
 session with the repository root as the working directory.
 
-The proposed methods can be used by sourcing `code/methods.R` and do not require
+The proposed methods can be used by sourcing `code/functions/methods.R` and do not require
 any additional R packages.
 
 The simulation study and real data analysis use the following R packages:
@@ -74,14 +76,14 @@ remotes::install_url(
 
 ## Using the Proposed Method
 
-Simply source `code/methods.R`:
+Simply source `code/functions/methods.R`:
 
 ```r
-source("code/methods.R")
+source("code/functions/methods.R")
 ```
 
 The proposed method can then be called directly using the corresponding function
-in `code/methods.R`. 
+in `methods.R`. 
 
 To run the two sample test on the data matrices `dataX` and `dataY` using the 
 spatial kernel and 10000 replications for cut-off estimation, run:
@@ -115,7 +117,7 @@ corresponding to the tests based on the tapering estimators.
 The complete simulation study can be reproduced from scratch by running:
 
 ```r
-source("run_simulation.R")
+source("code/scripts/run_simulation.R")
 ```
 
 The script uses parallel processing via the `future` package and, by default,
@@ -134,8 +136,8 @@ without rerunning the simulation study.
 Run:
 
 ```r
-source("make_simulation_tables.R")
-source("make_simulation_plots.R")
+source("code/scripts/make_simulation_tables.R")
+source("code/scripts/make_simulation_plots.R")
 ```
 
 `make_simulation_tables.R` generates Tables 1 and 2 from the main paper and 
@@ -153,7 +155,7 @@ testing methods considered in the simulation study. If the numerical size and po
 results are desired in tabular form, the following script can be used.
 
 ```r
-source("code/utils.R")
+source("code/functions/utils.R")
 results <- readRDS("results/sim_results.rds")
 
 p <- 100          # dimension
@@ -184,7 +186,7 @@ simply change the values of `p` and `model` accordingly.
 The real data analysis can be reproduced independently by running:
 
 ```r
-source("real_data_analysis.R")
+source("code/scripts/real_data_analysis.R")
 ```
 
 The script analyzes the human colon tissue dataset from the R package `plsgenomics`. 

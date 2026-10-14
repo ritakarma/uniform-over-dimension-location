@@ -1,5 +1,5 @@
 #### Requires: "HDNRA", "mvtnorm", "highmean", "DescTools", "maotai", "energy"
-#### Requires: "code/methods.R"
+#### Requires: "code/functions/methods.R"
 
 model_sim <- function(index, n1, n2, p, mu) {
   # Generates data for simulation study

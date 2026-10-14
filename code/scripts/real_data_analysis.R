@@ -7,7 +7,7 @@ library("plsgenomics")
 
 # Source required code files
 
-source("code/methods.R")
+source("code/functions/methods.R")
 
 # Load required packages
 library("HDNRA")

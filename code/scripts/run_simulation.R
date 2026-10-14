@@ -1,6 +1,6 @@
 # Source required code files
-source("code/methods.R")
-source("code/simulation.R")
+source("code/functions/methods.R")
+source("code/functions/simulation.R")
 
 # Load required packages
 library("HDNRA")
